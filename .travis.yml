@@ -1,0 +1,40 @@
+---
+language: python
+python: "2.7"
+
+env:
+  - SITE=test.yml
+
+before_install:
+  - sudo apt-get update -qq
+
+install:
+  # Install Ansible.
+  - pip install ansible
+
+  # Add ansible.cfg to pick up roles path.
+  - "printf '[defaults]\nroles_path = ../' > ansible.cfg"
+
+script:
+  # Check the role/playbook's syntax (including all the included files and roles).
+  - "ansible-playbook -i tests/inventory tests/$SITE --syntax-check"
+
+  # Run the role/playbook with ansible-playbook.
+  - "ansible-playbook -i tests/inventory tests/$SITE --connection=local --sudo -vvvv"
+
+  # Run the role/playbook again, checking to make sure it's idempotent.
+  - >
+    ansible-playbook -i tests/inventory tests/$SITE --connection=local --sudo
+    | grep -q 'changed=0.*failed=0'
+    && (echo 'Idempotence test: pass' && exit 0)
+    || (echo 'Idempotence test: fail' && exit 1)
+
+  # make sure .bashrc contains the line to source autoenv
+  - cat ~/.bashrc | grep activate.sh
+
+
+  # Make sure autoenv script is installed
+  - >
+    which activate.sh
+    && (echo 'autoenv is installed' && exit 0)
+    || (echo 'autoenv is not installed' && exit 1)

@@ -1,0 +1,6 @@
+---
+- hosts: localhost
+  remote_user: root
+  roles:
+    - role: ansible-role-autoenv
+      autoenv_shell_rc_file: /home/travis/.bashrc

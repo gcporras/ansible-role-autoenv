@@ -1,0 +1,22 @@
+---
+# tasks file for ansible-role-autoenv
+- name: install autoenv
+  pip: >
+    name=autoenv
+    version=1.0.0
+    state=present
+  tags:
+    - autoenv
+    - autoenv_install
+
+- name: load autoenv script
+  lineinfile: >
+    dest={{ autoenv_shell_rc_file }}
+    regexp='source `which activate.sh`'
+    line='source `which activate.sh`'
+    state=present
+    backup=yes
+    create=yes
+  tags:
+    - autoenv
+    - autoenv_load
