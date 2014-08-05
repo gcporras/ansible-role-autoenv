@@ -1,0 +1,4 @@
+---
+# defaults file for ansible-role-autoenv
+autoenv_shell_rc_file: "{{ ansible_env['HOME'] }}/.{{ ansible_env['SHELL'] | replace('/bin/','') }}rc"
+
