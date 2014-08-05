@@ -1,0 +1,21 @@
+---
+galaxy_info:
+  author: Gerardo Cepeda Porras
+  description: Install and configures autoenv
+  company: "National Film Board of Canada"
+  license: license MIT
+  min_ansible_version: 1.4
+  platforms:
+  - name: Ubuntu
+    versions:
+    - precise
+    - quantal
+    - raring
+    - saucy
+    - trusty
+  categories:
+  - development
+  - web
+dependencies: []
+version: 1.0.0
+  
