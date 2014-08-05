@@ -2,7 +2,12 @@ ansible-role-autoenv
 ========
 
 An [Ansible](http://www.ansible.com/home) Role that installs and configures
-[autoenv](https://github.com/kennethreitz/autoenv).
+[autoenv](https://github.com/kennethreitz/autoenv) a tool to auto load shell directory-based environments.
+
+This tool is good to:
+
+- auto-activate virtualenvs
+- set project-specific environment variables
 
 [![Build Status](https://travis-ci.org/gcporras/ansible-role-autoenv.png?branch=master)](https://travis-ci.org/gcporras/ansible-role-autoenv)
 
